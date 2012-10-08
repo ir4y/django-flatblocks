@@ -1,10 +1,9 @@
 from django.contrib import admin
+from hvad.admin import TranslatableAdmin
 from flatblocks.models import FlatBlock
 
 
-class FlatBlockAdmin(admin.ModelAdmin):
+class FlatBlockAdmin(TranslatableAdmin):
     ordering = ['slug', ]
-    list_display = ('slug', 'header')
-    search_fields = ('slug', 'header', 'content')
 
 admin.site.register(FlatBlock, FlatBlockAdmin)

@@ -7,7 +7,7 @@ except:
 
 setup(
     name = 'django-flatblocks',
-    version = '0.6.0',
+    version = '0.6.1',
     description = 'django-flatblocks acts like django.contrib.flatpages but '
                   'for parts of a page; like an editable help box you want '
                   'show alongside the main content.',
@@ -15,8 +15,8 @@ setup(
     keywords = 'django apps',
     license = 'New BSD License',
     author = 'Horst Gutmann',
-    author_email = 'zerok@zerokspot.com',
-    url = 'http://github.com/zerok/django-flatblocks/',
+    author_email = 'ir4y@allsol.ru',
+    url = 'https://github.com/ir4y/django-flatblocks',
     dependency_links = [],
     classifiers = [
         'Development Status :: 3 - Alpha',
@@ -26,6 +26,9 @@ setup(
         'License :: OSI Approved :: BSD License',
         'Programming Language :: Python',
         'Topic :: Software Development :: Libraries :: Python Modules',
+    ],
+    install_requires=[
+        "django-hvad",
     ],
     packages = find_packages(exclude=['ez_setup', 'test_project']),
     include_package_data = True,
