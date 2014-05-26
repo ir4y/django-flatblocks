@@ -1,10 +1,11 @@
+
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
-from django.core.cache import cache
-from flatblocks.settings import CACHE_PREFIX
-from hvad.models import TranslatableModel,TranslatedFields
+from hvad.models import TranslatableModel, TranslatedFields
 
 
+@python_2_unicode_compatible
 class FlatBlock(TranslatableModel):
     """
     Think of a flatblock as a flatpage but for just part of a site. It's
@@ -20,14 +21,13 @@ class FlatBlock(TranslatableModel):
                 help_text=_("An optional header for this content")),
         content = models.TextField(verbose_name=_('Content'), blank=True,
                 null=True))
+    # Helper attributes used if content should be evaluated in order to
+    # represent the original content.
+    raw_content = None
+    raw_header = None
 
-    def __unicode__(self):
-        return u"%s" % (self.slug,)
-
-    def save(self, *args, **kwargs):
-        super(FlatBlock, self).save(*args, **kwargs)
-        # Now also invalidate the cache used in the templatetag
-        cache.delete('%s%s' % (CACHE_PREFIX, self.slug, ))
+    def __str__(self):
+        return self.slug
 
     class Meta:
         verbose_name = _('Flat block')
